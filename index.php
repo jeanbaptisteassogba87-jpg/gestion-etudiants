@@ -1,3 +1,18 @@
+<?php 
+require_once 'config.php';
+
+// Récupérer les filières pour le formulaire
+$filieres = $db->query('SELECT * FROM filieres')->fetchAll();
+
+// Récupérer les étudiants avec leur filière
+$etudiants = $db->query('
+    SELECT etudiants.*, filieres.nom as filiere_nom 
+    FROM etudiants 
+    LEFT JOIN filieres ON etudiants.filiere_id = filieres.id
+    ORDER BY etudiants.id DESC
+')->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,43 +23,33 @@
 </head>
 <body>
 
-<?php 
-require_once 'config.php';
-
-// Récupérer les filières pour le formulaire
-$filieres = $db->query('SELECT * FROM filieres')->fetchAll();
-
-// Récupérer les étudiants avec leur filière (jointure)
-$sql = "SELECT e.id, e.nom, e.prenom, f.nom as filiere_nom 
-        FROM etudiants e 
-        LEFT JOIN filieres f ON e.filiere_id = f.id 
-        ORDER BY e.id DESC";
-$etudiants = $db->query($sql)->fetchAll();
-?>
-
 <div class="container">
-    <!-- Formulaire d'ajout -->
     <form action="traitement.php" method="post">
         <h1>Gestion Etudiants</h1>
         
-        <label>Nom :</label>
-        <input type="text" name="nom"><br>
+        <div class="form-group">
+            <label>Nom :</label>
+            <input type="text" name="nom" id="nom">
+        </div>
 
-        <label>Prénom :</label>
-        <input type="text" name="prenom"><br>
+        <div class="form-group">
+            <label>Prénom :</label>
+            <input type="text" name="prenom" id="prenom">
+        </div>
 
-        <label>Filière :</label>
-        <select name="filiere_id">
-            <option value="">Choisir</option>
-            <?php foreach($filieres as $f): ?>
-                <option value="<?= $f['id'] ?>"><?= $f['nom'] ?></option>
-            <?php endforeach; ?>
-        </select><br>
+        <div class="form-group">
+            <label>Filière :</label>
+            <select name="filiere_id" id="filiere">
+                <option value="">-- Choisir --</option>
+                <?php foreach($filieres as $f): ?>
+                    <option value="<?= $f['id'] ?>"><?= $f['nom'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
         <button type="submit">Ajouter</button>
     </form>
 
-    <!-- Tableau des étudiants -->
     <h2>Liste des étudiants</h2>
     
     <table>
@@ -57,23 +62,17 @@ $etudiants = $db->query($sql)->fetchAll();
             </tr>
         </thead>
         <tbody>
-            <?php if(count($etudiants) > 0): ?>
-                <?php foreach($etudiants as $e): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($e['nom']) ?></td>
-                        <td><?= htmlspecialchars($e['prenom']) ?></td>
-                        <td><?= htmlspecialchars($e['filiere_nom'] ?? 'Non assigné') ?></td>
-                        <td>
-                            <a href="update.php?id=<?= $e['id'] ?>" class="edit">Modifier</a>
-                            <a href="delete.php?id=<?= $e['id'] ?>" class="delete" onclick="return confirm('Supprimer ?')">Supprimer</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4" style="text-align: center">Aucun étudiant</td>
-                </tr>
-            <?php endif; ?>
+            <?php foreach($etudiants as $e): ?>
+            <tr>
+                <td><?= $e['nom'] ?></td>
+                <td><?= $e['prenom'] ?></td>
+                <td><?= $e['filiere_nom'] ?></td>
+                <td>
+                    <a href="update.php?id=<?= $e['id'] ?>" class="edit">Modifier</a>
+                    <a href="delete.php?id=<?= $e['id'] ?>" class="delete" onclick="return confirm('Vraiment supprimer ?')">Supprimer</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

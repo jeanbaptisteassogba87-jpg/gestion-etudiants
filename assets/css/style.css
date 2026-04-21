@@ -1,52 +1,76 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background: lightblue;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 form {
     background: white;
-    width: 500px;
-    margin: 50px auto;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
+    margin-bottom: 30px;
 }
 
 h1 {
     text-align: center;
     color: blue;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
     display: inline-block;
     width: 80px;
+    font-weight: bold;
 }
 
 input, select {
     padding: 8px;
     width: 250px;
-    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
     background: blue;
     color: white;
     padding: 10px 20px;
-    margin-left: 80px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    margin-left: 80px;
 }
 
-/* Tableau */
+button:hover {
+    background: darkblue;
+}
+
 table {
     width: 100%;
+    background: white;
     border-collapse: collapse;
-    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
-    border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
@@ -64,6 +88,7 @@ tr:hover {
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
+    margin-right: 5px;
 }
 
 .delete {
@@ -72,4 +97,13 @@ tr:hover {
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.cancel {
+    background: gray;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
 }

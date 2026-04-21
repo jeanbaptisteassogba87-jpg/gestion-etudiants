@@ -1,35 +1,31 @@
-// Validation du formulaire
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Récupérer le formulaire
-    const formulaire = document.querySelector('form');
-    
-    // Ajouter l'événement au moment de l'envoi
-    formulaire.addEventListener('submit', function(event) {
+// Validation formulaire d'ajout
+const formAjout = document.querySelector('form[action="traitement.php"]');
+if(formAjout) {
+    formAjout.addEventListener('submit', function(e) {
+        let nom = document.getElementById('nom').value;
+        let prenom = document.getElementById('prenom').value;
+        let filiere = document.getElementById('filiere').value;
         
-        // Récupérer les valeurs
-        let nom = document.querySelector('input[name="nom"]').value;
-        let prenom = document.querySelector('input[name="prenom"]').value;
-        let filiere = document.querySelector('select[name="filiere_id"]').value;
-        let erreur = false;
-        let message = "";
-        if(nom === "") {
-            erreur = true;
-            message = message + "Le nom est obligatoire.\n";
-        }
-        if(prenom === "") {
-            erreur = true;
-            message = message + "Le prénom est obligatoire.\n";
-        }
-        
-        if(filiere === "") {
-            erreur = true;
-            message = message + "Veuillez choisir une filière.\n";
-        }
-
-        if(erreur) {
-            event.preventDefault();
-            alert(message);         
+        if(nom === "" || prenom === "") {
+            e.preventDefault();
+            alert("Nom et prénom sont obligatoires !");
+        } else if(filiere === "") {
+            e.preventDefault();
+            alert("Veuillez choisir une filière !");
         }
     });
-});
+}
+
+// Validation formulaire de modification
+const formUpdate = document.querySelector('form[method="post"]');
+if(formUpdate) {
+    formUpdate.addEventListener('submit', function(e) {
+        let nom = document.querySelector('input[name="nom"]').value;
+        let prenom = document.querySelector('input[name="prenom"]').value;
+        
+        if(nom === "" || prenom === "") {
+            e.preventDefault();
+            alert("Nom et prénom sont obligatoires !");
+        }
+    });
+}
