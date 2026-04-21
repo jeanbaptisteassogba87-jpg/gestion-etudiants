@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Gestion Etudiants</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
 </head>
 <body>
 
@@ -16,13 +17,13 @@ $filieres = $db->query('SELECT * FROM filieres')->fetchAll();
     <h1>Gestion Etudiants</h1>
     
     <label>Nom :</label>
-    <input type="text" name="nom" required><br>
+    <input type="text" name="nom"><br>
 
     <label>Prénom :</label>
-    <input type="text" name="prenom" required><br>
+    <input type="text" name="prenom"><br>
 
     <label>Filière :</label>
-    <select name="filiere_id" required>
+    <select name="filiere_id">
         <option value="">Choisir</option>
         <?php foreach($filieres as $f): ?>
             <option value="<?= $f['id'] ?>"><?= $f['nom'] ?></option>
