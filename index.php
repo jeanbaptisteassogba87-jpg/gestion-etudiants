@@ -19,7 +19,6 @@ $etudiants = $db->query('
     <meta charset="UTF-8">
     <title>Gestion Etudiants</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
 </head>
 <body>
 
@@ -76,6 +75,6 @@ $etudiants = $db->query('
         </tbody>
     </table>
 </div>
-
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-// Validation formulaire d'ajout
 const formAjout = document.querySelector('form[action="traitement.php"]');
 if(formAjout) {
     formAjout.addEventListener('submit', function(e) {
@@ -16,7 +15,6 @@ if(formAjout) {
     });
 }
 
-// Validation formulaire de modification
 const formUpdate = document.querySelector('form[method="post"]');
 if(formUpdate) {
     formUpdate.addEventListener('submit', function(e) {

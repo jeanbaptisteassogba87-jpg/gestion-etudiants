@@ -32,7 +32,6 @@ if($_POST) {
     <meta charset="UTF-8">
     <title>Modifier Etudiant</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
 </head>
 <body>
 
@@ -50,7 +49,7 @@ if($_POST) {
             <input type="text" name="prenom" value="<?= $etudiant['prenom'] ?>">
         </div>
 
-        <div class="form-group">
+        <div class="form-group"> 
             <label>Filière :</label>
             <select name="filiere_id">
                 <?php foreach($filieres as $f): ?>
@@ -65,6 +64,6 @@ if($_POST) {
         <a href="index.php" class="cancel">Annuler</a>
     </form>
 </div>
-
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
